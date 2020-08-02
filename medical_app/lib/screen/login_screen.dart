@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:medical_app/screen/login_form.dart';
 import 'package:medical_app/widgets/curved_widget.dart';
 
+
 class LoginScreen extends StatelessWidget {
 
 
@@ -24,7 +25,7 @@ class LoginScreen extends StatelessWidget {
               child:Container(
                 padding: const EdgeInsets.only(top:100,left:50),
                 width: double.infinity,
-                height: 400,
+                height: 300,
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
                     begin: Alignment.topCenter,
