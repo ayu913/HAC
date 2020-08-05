@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'cartmodel.dart';
 import 'item.dart';
 import 'SizeConfig.dart';
+import 'package:scoped_model/scoped_model.dart';
+
 
 class ItemDescription extends StatefulWidget {
 
@@ -14,7 +17,54 @@ class ItemDescription extends StatefulWidget {
 
 class _ItemDescriptionState extends State<ItemDescription> with TickerProviderStateMixin  {
 
-  
+  List<Item> _items = [
+    Item(
+     id: 1,
+     title: 'Charak Pharma',
+     description: '''Manufactured by : Charak Pharma Pvt Ltd
+      Common use : As per physician's advice, may be useful in prevention of infection and immunity
+Dosage : One tablet, 2 times a day''', 
+      color:Color(0xFFF4E389), 
+       price:115, 
+      priceDescription:'10 tabs', 
+     imageUrl: 'assets/images/immune.jpg',
+      qty:1,
+    ),
+    Item(
+      id:2,
+      title:'Nutrainix Vit C',
+      description:'''Packed with the power of 40 Amlas, Nutrainix Charge is a natural effervescent supplement to protect you against infectionsNutrainix Charge can be consumed by anyone and is recommended for daily use for better results.''', 
+      color:Color(0xFFDFDFF8), 
+      price:148, 
+      priceDescription:'1 bottle', 
+      imageUrl:'assets/images/nutranix.jpg',
+      qty:1 ,  
+    ),
+//     Item(
+//       3,
+//       'Fast&Up Vit C',
+//        '''Amway Tablets
+// Nutrilite Natural
+// Its C-120N Tablets''', 
+//       Color(0xFFEAB9E7), 
+//       536, 
+//       '1bottle', 
+//       'assets/images/nutrilite.jpg',
+//       1,
+//     ),
+//     Item(
+//       4,
+//       'Paracetamol',
+//        '''Paracetamol is used to treat many conditions such as headache, muscle aches, arthritis, backache, toothaches, colds, and fevers. It relieves pain in mild arthritis but has no effect on the underlying inflammation and swelling of the joint.''', 
+//       Color(0xFFB4E0AA), 
+//       82, 
+//       '15 tabs', 
+//       'assets/images/paracetamol.jpg',
+
+// 1,    ),
+    
+    
+  ];
 
 
 
@@ -32,11 +82,14 @@ class _ItemDescriptionState extends State<ItemDescription> with TickerProviderSt
   @override
   Widget build(BuildContext context) {
   
+    
     return LayoutBuilder(
       builder: (context, constraints) {
         return OrientationBuilder(
           builder: (context, orientation) {
             SizeConfig().init(constraints, orientation);
+            return ScopedModelDescendant<CartModel>(
+              builder: (context, child, model) {
             return Scaffold(
       body: Column(
         children: <Widget>[
@@ -249,14 +302,20 @@ class _ItemDescriptionState extends State<ItemDescription> with TickerProviderSt
                                       SizedBox(
                                         width: 1 * SizeConfig.widthMultiplier,
                                       ),
-                                      Text(
-                                        "Add to cart",
-                                        style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize:
-                                                2.5 * SizeConfig.textMultiplier,
-                                            fontWeight: FontWeight.bold,
-                                            fontFamily: 'OpenSans-Bold'),
+                                      RaisedButton(
+                                                      
+                                  
+                                                         
+                                                      onPressed: () => model.addProduct(_items[0]),
+                                                                              child: Text(
+                                          "Add to cart",
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize:
+                                                  2.5 * SizeConfig.textMultiplier,
+                                              fontWeight: FontWeight.bold,
+                                              fontFamily: 'OpenSans-Bold'),
+                                        ),
                                       )
                                     ],
                                   ),
@@ -280,5 +339,7 @@ class _ItemDescriptionState extends State<ItemDescription> with TickerProviderSt
       },
     );
     
+              },
+    );
   }
 }
