@@ -1,3 +1,4 @@
+import 'package:HAC/maps.dart';
 import 'package:HAC/widgets/gradient_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -142,12 +143,16 @@ class _HomePageState extends State<HomePage> {
                 },
               ),
             ),
-            
+            SizedBox(
+              height:30,
+            ),
             
               GradientButton(
               width: 290,
               height: 45,
-              onPressed: (){},
+              onPressed: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context) => Map()));
+              },
               text: Text(
                 'Nearby Pharmacy',
                 style: TextStyle(
