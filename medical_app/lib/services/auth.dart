@@ -1,9 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:medical_app/models/user.dart';
 
 
 class AuthService{
   final FirebaseAuth _auth= FirebaseAuth.instance;
+  final GoogleSignIn googleSignIn= new GoogleSignIn();
 
   User _userFromFirebaseUser(FirebaseUser user){
     return user !=null ?User(uid: user.uid) :null;
@@ -45,5 +47,7 @@ class AuthService{
       return null;
     }
   }
+
+  
   
 }

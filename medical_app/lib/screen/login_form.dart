@@ -1,4 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:medical_app/screen/register_screen.dart';
 import 'package:medical_app/services/auth.dart';
 import 'package:medical_app/widgets/gradient_button.dart';
@@ -15,6 +17,9 @@ class _LoginFormState extends State<LoginForm> {
 
  final AuthService _auth = AuthService();
  final formKey=GlobalKey<FormState>();
+
+  final FirebaseAuth auth= FirebaseAuth.instance;
+  final GoogleSignIn googleSignIn= new GoogleSignIn();
 
  String error = '';
 String name='';
@@ -129,7 +134,8 @@ String name='';
         
           Widget _buildSocialBtn(Function onTap, AssetImage logo) {
     return GestureDetector(
-    onTap: () {},
+      onTap: (){},
+    // onTap: ()=>_signin().then((FirebaseUser user) async =>print(user)).catchError((e)=>print(e)),
       child: Container(
         height: 60.0,
         width: 60.0,
@@ -199,4 +205,18 @@ String name='';
       ),
     );
   }
-}
+  // Future<FirebaseUser> _signin() async{
+  //   GoogleSignInAccount googleSignInAccount=await googleSignIn.signIn();
+  //   GoogleSignInAuthentication googleSignInAuthentication=await googleSignInAccount.authentication;
+  //       final AuthCredential credential = GoogleAuthProvider.getCredential(
+  //     accessToken: googleSignInAuthentication.accessToken,
+  //     idToken: googleSignInAuthentication.idToken,
+  //   );
+  //   final AuthResult authResult = await auth.signInWithCredential(credential);
+    
+  //   FirebaseUser user = authResult.user;
+  // print("signed in " + user.displayName);
+  // return user;
+    
+   
+  }
